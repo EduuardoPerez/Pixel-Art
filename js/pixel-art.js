@@ -54,11 +54,23 @@ $(function() {
     }
   };
 
-  // Cambia el color del indicador de color según el que se escoja en la paleta
   let colorPaleta = $('.color-paleta');
+  let indicadorColor = $('#indicador-de-color');
+
+  // Cambia el color del indicador de color según el que se escoja en la paleta
   colorPaleta.click(function(){
     let colorSeleccionado = $(this).css('background-color');
-    $('#indicador-de-color').css('background-color', colorSeleccionado);
+    indicadorColor.css('background-color', colorSeleccionado);
+  });
+
+  // Pintar pixel del lienzo
+  let pixeles = $('div');
+  pixeles.click(function(){
+    let backgroundColor = indicadorColor.attr('style');
+    if(backgroundColor !== undefined){
+      let colorSeleccionado = indicadorColor.css('background-color');
+      $(this).css('background-color', colorSeleccionado);
+    }
   });
 
   generarPaleta();
