@@ -26,14 +26,14 @@ $(function() {
   var colorPersonalizado = document.getElementById('color-personalizado');
   var paleta = $('#paleta');
   var grillaPixeles = $('#grilla-pixeles');
+  var indicadorColor = $('#indicador-de-color');
 
   colorPersonalizado.addEventListener('change', 
     (function() {
       // Se guarda el color de la rueda en colorActual
       colorActual = colorPersonalizado.value;
       // Completar para que cambie el indicador-de-color al colorActual
-
-
+      cambiarColorIndicador(colorActual);
     })
   );
 
@@ -46,6 +46,8 @@ $(function() {
       }).appendTo(paleta);
     });
   };
+  generarPaleta();
+
 
   // Generar la grilla
   function generarLienzo() {
@@ -53,15 +55,20 @@ $(function() {
       $(`<div></div>`).appendTo(grillaPixeles);
     }
   };
+  generarLienzo();
 
-  let colorPaleta = $('.color-paleta');
-  let indicadorColor = $('#indicador-de-color');
+  var colorPaleta = $('.color-paleta');
 
-  // Cambia el color del indicador de color según el que se escoja en la paleta
+  // Al hacer clic en el color de la paleta se cambia en el indicador de color
   colorPaleta.click(function(){
     let colorSeleccionado = $(this).css('background-color');
-    indicadorColor.css('background-color', colorSeleccionado);
+    cambiarColorIndicador(colorSeleccionado);
   });
+
+  // Cambia el color del indicador de color
+  function cambiarColorIndicador(color) {
+    indicadorColor.css('background-color', color);
+  }
 
   // Pintar pixel del lienzo
   let pixeles = $('div');
@@ -72,7 +79,4 @@ $(function() {
       $(this).css('background-color', colorSeleccionado);
     }
   });
-
-  generarPaleta();
-  generarLienzo();
 });
