@@ -28,6 +28,11 @@ $(function() {
   var grillaPixeles = $('#grilla-pixeles');
   var indicadorColor = $('#indicador-de-color');
 
+  // Cambia el color del indicador de color
+  function cambiarColorIndicador(color) {
+    indicadorColor.css('background-color', color);
+  }
+
   colorPersonalizado.addEventListener('change', 
     (function() {
       // Se guarda el color de la rueda en colorActual
@@ -65,11 +70,6 @@ $(function() {
     cambiarColorIndicador(colorSeleccionado);
   });
 
-  // Cambia el color del indicador de color
-  function cambiarColorIndicador(color) {
-    indicadorColor.css('background-color', color);
-  }
-
   // Pintar pixel del lienzo
   let pixeles = $('div');
   pixeles.click(function(){
@@ -79,4 +79,20 @@ $(function() {
       $(this).css('background-color', colorSeleccionado);
     }
   });
+
+  // Retorna true si se presiono el mouse y false si no
+  function detectarMousePresionado() {
+    $(this).mousedown(function (){
+      console.log('mouse presiona');
+      return true;
+    })
+    
+    $(this).mouseup(function (){
+      console.log('mouse soltado');
+      return false;
+    })
+  }
+
+  var mousePresionado = detectarMousePresionado();
+
 });
