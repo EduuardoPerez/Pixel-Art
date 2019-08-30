@@ -70,29 +70,39 @@ $(function() {
     cambiarColorIndicador(colorSeleccionado);
   });
 
-  // Pintar pixel del lienzo
-  let pixeles = $('div');
-  pixeles.click(function(){
+  // Pintar un pixel segun el color de indicador-de-color
+  function pintarPixel(pixel) {
     let backgroundColor = indicadorColor.attr('style');
     if(backgroundColor !== undefined){
       let colorSeleccionado = indicadorColor.css('background-color');
-      $(this).css('background-color', colorSeleccionado);
+      pixel.css('background-color', colorSeleccionado);
     }
+  }
+
+  // Pintar al hacer clic
+  let pixeles = $('#grilla-pixeles div');
+  pixeles.click(function(){
+    pintarPixel($(this))
   });
 
   // Retorna true si se presiono el mouse y false si no
   function detectarMousePresionado() {
-    $(this).mousedown(function (){
-      console.log('mouse presiona');
+    pixeles.mousedown(function (){
       return true;
     })
     
-    $(this).mouseup(function (){
-      console.log('mouse soltado');
+    pixeles.mouseup(function (){
       return false;
     })
   }
 
   var mousePresionado = detectarMousePresionado();
+
+  pixeles.mousemove(function (){
+    if(mousePresionado){
+      console.log('mousemove & mousedown')
+      pintarPixel($(this));
+    }    
+  })
 
 });
