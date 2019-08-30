@@ -135,4 +135,11 @@ $(function() {
     }
   });
 
+  const btnGuardar = $('#guardar');
+
+  // Guardar al hacer clic en botón guardar
+  btnGuardar.click(()=>{
+    guardarPixelArt()
+  });
+
 });
