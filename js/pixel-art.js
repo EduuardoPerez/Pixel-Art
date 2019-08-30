@@ -57,7 +57,7 @@ $(function() {
   // Generar la grilla
   function generarLienzo() {
     for (let i=0; i<1750; i++) {
-      $(`<div></div>`).appendTo(grillaPixeles);
+      $(`<div style="background-color:white;"></div>`).appendTo(grillaPixeles);
     }
   };
   generarLienzo();
@@ -79,8 +79,9 @@ $(function() {
     }
   }
 
-  // Pintar al hacer clic
   let pixeles = $('#grilla-pixeles div');
+
+  // Pintar al hacer clic
   pixeles.click(function(){
     pintarPixel($(this))
   });
@@ -89,16 +90,29 @@ $(function() {
   var mousePresionado;
   pixeles.mousedown(function (){
     mousePresionado = true;
-  })
+  });
   pixeles.mouseup(function (){
     mousePresionado = false;
-  })
+  });
 
   // Pintar en movimiento si el mouse está presionado
   pixeles.mousemove(function (){
     if(mousePresionado){
       pintarPixel($(this));
     }
+  });
+
+  const btnBorrarTodo = $('#borrar');
+
+  // Se colocan todos los pixeles de color blanco al darle al botón borrar todo
+  btnBorrarTodo.click(function() {
+    pixeles.each((i, pixel) => {
+      $(pixel).animate({
+        'background-color':'white'
+      },3000);
+      
+    });
+    indicadorColor.css('background-color','white');
   });
 
 });
