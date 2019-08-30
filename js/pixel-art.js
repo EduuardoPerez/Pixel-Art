@@ -85,24 +85,20 @@ $(function() {
     pintarPixel($(this))
   });
 
-  // Retorna true si se presiono el mouse y false si no
-  function detectarMousePresionado() {
-    pixeles.mousedown(function (){
-      return true;
-    })
-    
-    pixeles.mouseup(function (){
-      return false;
-    })
-  }
+  // Saber si el mouse esta presionado o no
+  var mousePresionado;
+  pixeles.mousedown(function (){
+    mousePresionado = true;
+  })
+  pixeles.mouseup(function (){
+    mousePresionado = false;
+  })
 
-  var mousePresionado = detectarMousePresionado();
-
+  // Pintar en movimiento si el mouse está presionado
   pixeles.mousemove(function (){
     if(mousePresionado){
-      console.log('mousemove & mousedown')
       pintarPixel($(this));
-    }    
-  })
+    }
+  });
 
 });
