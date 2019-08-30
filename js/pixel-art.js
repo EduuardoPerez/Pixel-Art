@@ -109,10 +109,30 @@ $(function() {
     pixeles.each((i, pixel) => {
       $(pixel).animate({
         'background-color':'white'
-      },3000);
+      },1500);
       
     });
     indicadorColor.css('background-color','white');
+  });
+
+  const imagenes = $('.imgs li img');
+
+  // Se cargan los superheroes de las imagenes al hacer clic sobre ellos
+  imagenes.click(function(){
+    let superheroe = $(this).attr('id');
+
+    if(superheroe=='batman'){
+      cargarSuperheroe(batman);
+    }
+    else if(superheroe=='wonder'){
+      cargarSuperheroe(wonder);
+    }
+    else if(superheroe=='flash'){
+      cargarSuperheroe(flash);
+    }
+    else if(superheroe=='invisible'){
+      cargarSuperheroe(invisible);
+    }
   });
 
 });
